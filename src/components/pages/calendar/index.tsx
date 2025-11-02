@@ -1,15 +1,15 @@
+
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import React from "react";
-import GoogleCalendarComponent from "./google-calendar";
+import CalendarComponent from "./google-calendar";
 
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!;
 
-const CalendarComponent = () => {
+const GoogleCalendarComponent = () => {
   return (
     <GoogleOAuthProvider clientId={clientId}>
-      <GoogleCalendarComponent />
+      <CalendarComponent />
     </GoogleOAuthProvider>
   );
 };
 
-export default CalendarComponent;
+export default GoogleCalendarComponent;

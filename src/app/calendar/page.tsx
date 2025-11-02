@@ -1,8 +1,8 @@
-import CalendarComponent from "@/components/pages/calendar";
+import GoogleCalendarComponent from "@/components/pages/calendar";
 import Layout from "../layout";
 
 const CalendarPage: NextPageWithLayout = () => {
-  return <CalendarComponent />;
+  return <GoogleCalendarComponent />;
 };
 
 CalendarPage.getLayout = function Home(page) {

@@ -8,9 +8,16 @@ export interface HeaderProps {
 
 export interface EventDetailProps {
   event: CalendarEvent | null;
+  onClose: () => void;
+  onDelete: (id: string) => void;
+  onEdit: (id: string, updatedEvent: Partial<CalendarEvent>) => void;
 }
 
-
+export interface CreateEventProps {
+  selectedDate: string | null;
+  onCreate: (eventData: CalendarEventInput) => void;
+  onClose: () => void;
+}
 
 export interface CalendarEvent {
   id?: string;
@@ -24,4 +31,10 @@ export interface CalendarEvent {
   end?: { dateTime?: string; date?: string };
 }
 
-
+export interface CalendarEventInput {
+  summary: string;
+  description?: string;
+  location?: string;
+  start: { dateTime: string };
+  end: { dateTime: string };
+}

@@ -7,14 +7,22 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { CalendarHeader } from "./header";
+import ModalContainer from "@/components/atom/modal";
 import { useGoogleCalendar } from "@/hooks/use-google-calendar";
+import EventDetail from "./event-detail";
+import CreateEvent from "./create-event";
 
 export default function CalendarComponent() {
   const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
 
+  const [open, setOpen] = useState(false);
+  const [modalId, setModalId] = useState<number | null>(null);
   const router = useRouter();
 
-  const { events, calendarId } = useGoogleCalendar(accessToken);
+  const { events, calendarId, createEvent, updateEvent, deleteEvent } =
+    useGoogleCalendar(accessToken);
 
   const login = useGoogleLogin({
     flow: "implicit",
@@ -28,6 +36,51 @@ export default function CalendarComponent() {
     googleLogout();
     setAccessToken(null);
     router.push("/calendar");
+  };
+
+  const handleOpenModal = (id: number) => {
+    setModalId(id);
+    setOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpen(false);
+    setSelectedEvent(null);
+    setSelectedDate(null);
+  };
+
+  const handelSeeEventDetail = (info: any) => {
+    setSelectedEvent({
+      id: info.event.id,
+      summary: info.event.title,
+      description: info.event.extendedProps.description ?? "",
+      start: { dateTime: info.event.start?.toISOString() },
+      end: { dateTime: info.event.end?.toISOString() },
+      creator: { email: info.event.extendedProps.creator ?? "" },
+      htmlLink: info.event.extendedProps.htmlLink ?? "",
+      location: info.event.extendedProps.location ?? "",
+    });
+    handleOpenModal(1);
+  };
+
+  const handleDateClick = (info: any) => {
+    setSelectedDate(info.dateStr);
+    handleOpenModal(2);
+  };
+
+  const handleCreateEvent = async (eventData: any) => {
+    handleCloseModal();
+    await createEvent(eventData);
+  };
+
+  const handleEditEvent = async (id: string, data: any) => {
+    handleCloseModal();
+    await updateEvent(id, data);
+  };
+
+  const handleDeleteEvent = async (id: string) => {
+    handleCloseModal();
+    await deleteEvent(id);
   };
 
   return (
@@ -50,6 +103,8 @@ export default function CalendarComponent() {
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               initialView="dayGridMonth"
               events={events}
+              eventClick={handelSeeEventDetail}
+              dateClick={handleDateClick}
               height="80vh"
               selectable
               headerToolbar={{
@@ -59,6 +114,24 @@ export default function CalendarComponent() {
               }}
             />
           </div>
+
+          <ModalContainer open={open} handleClose={handleCloseModal}>
+            {modalId === 1 && selectedEvent && (
+              <EventDetail
+                event={selectedEvent}
+                onDelete={handleDeleteEvent}
+                onEdit={handleEditEvent}
+                onClose={handleCloseModal}
+              />
+            )}
+            {modalId === 2 && selectedDate && (
+              <CreateEvent
+                selectedDate={selectedDate}
+                onCreate={handleCreateEvent}
+                onClose={handleCloseModal}
+              />
+            )}
+          </ModalContainer>
         </>
       )}
     </div>

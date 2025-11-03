@@ -7,11 +7,14 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { CalendarHeader } from "./header";
+import { useGoogleCalendar } from "@/hooks/use-google-calendar";
 
 export default function CalendarComponent() {
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
   const router = useRouter();
+
+  const { events, calendarId } = useGoogleCalendar(accessToken);
 
   const login = useGoogleLogin({
     flow: "implicit",
@@ -29,7 +32,7 @@ export default function CalendarComponent() {
 
   return (
     <div className="p-6 min-h-screen bg-gray-50">
-      {!accessToken  ? (
+      {!accessToken || !calendarId ? (
         <div className="flex justify-center items-center h-screen">
           <button
             onClick={() => login()}
@@ -46,6 +49,7 @@ export default function CalendarComponent() {
             <FullCalendar
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               initialView="dayGridMonth"
+              events={events}
               height="80vh"
               selectable
               headerToolbar={{

@@ -23,7 +23,7 @@ const TimeInputField = ({
               value={field.value || ""}
               onChange={field.onChange}
               className="
-                w-full border border-gray-300 rounded-xl p-3 pr-10 
+                w-full border border-gray-300 rounded-xl p-3  
                 text-gray-700 focus:ring-2 focus:ring-blue-400
               "
             />

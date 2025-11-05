@@ -48,7 +48,6 @@ export function useGoogleCalendar(accessToken: string | null) {
           end: item.end.dateTime || item.end.date,
           creator: item.creator?.email,
           htmlLink: item.htmlLink,
-          location: item.location,
         }));
 
         setEvents(items);
@@ -76,7 +75,6 @@ export function useGoogleCalendar(accessToken: string | null) {
         end: item.end.dateTime || item.end.date,
         creator: item.creator?.email,
         htmlLink: item.htmlLink,
-        location: item.location,
       }));
 
       setEvents(items);

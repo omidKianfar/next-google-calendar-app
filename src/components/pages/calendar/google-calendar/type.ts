@@ -8,7 +8,6 @@ export interface HeaderProps {
 
 export interface EventDetailProps {
   event: CalendarEvent | null;
-  onClose: () => void;
   onDelete: (id: string) => void;
   onEdit: (id: string, updatedEvent: Partial<CalendarEvent>) => void;
 }
@@ -23,7 +22,6 @@ export interface CalendarEvent {
   id?: string;
   summary?: string;
   description?: string;
-  location?: string;
   htmlLink?: string;
   hangoutLink?: string;
   creator?: { email?: string };
@@ -34,7 +32,7 @@ export interface CalendarEvent {
 export interface CalendarEventInput {
   summary: string;
   description?: string;
-  location?: string;
   start: { dateTime: string };
   end: { dateTime: string };
 }
+

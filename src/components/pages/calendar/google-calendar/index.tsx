@@ -58,7 +58,6 @@ export default function CalendarComponent() {
       end: { dateTime: info.event.end?.toISOString() },
       creator: { email: info.event.extendedProps.creator ?? "" },
       htmlLink: info.event.extendedProps.htmlLink ?? "",
-      location: info.event.extendedProps.location ?? "",
     });
     handleOpenModal(1);
   };
@@ -112,6 +111,9 @@ export default function CalendarComponent() {
                 center: "title",
                 right: "dayGridMonth,timeGridWeek,timeGridDay",
               }}
+              eventDidMount={(info) => {
+                info.el.style.cursor = "pointer";
+              }}
             />
           </div>
 
@@ -121,7 +123,6 @@ export default function CalendarComponent() {
                 event={selectedEvent}
                 onDelete={handleDeleteEvent}
                 onEdit={handleEditEvent}
-                onClose={handleCloseModal}
               />
             )}
             {modalId === 2 && selectedDate && (

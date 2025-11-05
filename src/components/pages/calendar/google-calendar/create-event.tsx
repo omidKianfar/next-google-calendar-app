@@ -1,64 +1,119 @@
 "use client";
-import { useState } from "react";
-import { CreateEventProps } from "./type";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CalendarEventInput, CreateEventProps } from "./type";
+import * as Yup from "yup";
+import { useMemo } from "react";
 
 const CreateEvent = ({ selectedDate, onCreate, onClose }: CreateEventProps) => {
-  const [summary, setSummary] = useState("");
-  const [description, setDescription] = useState("");
+  const defaultValues = useMemo(
+    () => ({
+      summary: "",
+      description: "",
+      startTime: "",
+      endTime: "",
+    }),
+    []
+  );
 
-  const handleSubmit = () => {
-    const start = new Date(selectedDate ?? "");
-    const end = new Date(start.getTime() + 60 * 60 * 1000); // +1 hour
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(AddEventSchema),
+    defaultValues,
+  });
 
-    const newEvent = {
-      summary,
-      description,
-      start: { dateTime: start.toISOString() },
-      end: { dateTime: end.toISOString() },
+  const { errors } = formState;
+
+  const onSubmit = (values: any) => {
+    const start = new Date(`${selectedDate}T${values.startTime}:00`);
+    const end = new Date(`${selectedDate}T${values.endTime}:00`);
+    const event: CalendarEventInput = {
+      summary: values.summary,
+      description: values.description,
+      start: {
+        dateTime: start.toISOString(),
+      },
+      end: {
+        dateTime: end.toISOString(),
+      },
     };
 
-    onCreate(newEvent);
+    onCreate(event);
     onClose();
   };
 
   return (
-    <div className="p-4 bg-white rounded-xl  w-full max-w-md">
+    <div className="p-4 bg-white rounded-xl w-full max-w-md">
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Create Event</h2>
 
-      <div className="space-y-3">
-        <input
-          type="text"
-          placeholder="Title"
-          value={summary}
-          onChange={(e) => setSummary(e.target.value)}
-          className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        />
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div>
+          <input
+            {...register("summary")}
+            type="text"
+            placeholder="Title"
+            className="w-full border p-2 rounded-lg"
+          />
+          {errors.summary && (
+            <p className="text-red-500 text-sm">{errors.summary.message}</p>
+          )}
+        </div>
 
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-          rows={4}
-        />
+        <div>
+          <textarea
+            {...register("description")}
+            placeholder="Description"
+            rows={3}
+            className="w-full border p-2 rounded-lg"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm text-gray-700">Start Time</label>
+          <input
+            {...register("startTime")}
+            type="time"
+            className="w-full border p-2 rounded-lg"
+          />
+          {errors.startTime && (
+            <p className="text-red-500 text-sm">{errors.startTime.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label className="text-sm text-gray-700">End Time</label>
+          <input
+            {...register("endTime")}
+            type="time"
+            className="w-full border p-2 rounded-lg"
+          />
+          {errors.endTime && (
+            <p className="text-red-500 text-sm">{errors.endTime.message}</p>
+          )}
+        </div>
 
         <div className="flex justify-end gap-2 pt-2">
           <button
-            onClick={onClose}
-            className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg transition"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition"
+            type="submit"
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
           >
             Save
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
 
 export default CreateEvent;
+
+const AddEventSchema = Yup.object().shape({
+  summary: Yup.string().required("Enter event title"),
+  description: Yup.string().optional(),
+  startTime: Yup.string().required("Select start time"),
+  endTime: Yup.string()
+    .required("Select end time")
+    .test("is-greater", "End time must be after start time", function (value) {
+      const { startTime } = this.parent;
+      return startTime && value ? value > startTime : false;
+    }),
+});

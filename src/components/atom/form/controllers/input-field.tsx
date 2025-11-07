@@ -1,14 +1,21 @@
 import { Controller, FieldValues } from "react-hook-form";
-import { TimeInputFieldProps } from "./type";
+import { InputControllerProps } from "./type";
 
-const TimeInputField = <T extends FieldValues>({
-  control,
+const InputField = <T extends FieldValues>({
   name,
+  control,
   label,
+  placeholder,
   errors,
-}: TimeInputFieldProps<T>) => {
+  type = "text",
+  className,
+}: InputControllerProps<T>) => {
+  {
+    label && <label className="text-sm font-medium">{label}</label>;
+  }
+
   return (
-    <div className="space-y-1">
+    <div className={className}>
       {label && <label className="text-sm font-medium">{label}</label>}
 
       <Controller
@@ -17,7 +24,8 @@ const TimeInputField = <T extends FieldValues>({
         render={({ field }) => (
           <input
             {...field}
-            type="date"
+            type={type}
+            placeholder={placeholder}
             className="w-full border p-2 rounded-lg"
           />
         )}
@@ -30,4 +38,4 @@ const TimeInputField = <T extends FieldValues>({
   );
 };
 
-export default TimeInputField;
+export default InputField;

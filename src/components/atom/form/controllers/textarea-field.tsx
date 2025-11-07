@@ -1,23 +1,27 @@
 import { Controller, FieldValues } from "react-hook-form";
-import { TimeInputFieldProps } from "./type";
+import { TextareaControllerProps } from "./type";
 
-const TimeInputField = <T extends FieldValues>({
+function TextareaController<T extends FieldValues>({
   control,
   name,
   label,
+  placeholder,
   errors,
-}: TimeInputFieldProps<T>) => {
+  rows = 3,
+  className,
+}: TextareaControllerProps<T>) {
   return (
-    <div className="space-y-1">
+    <div className={className}>
       {label && <label className="text-sm font-medium">{label}</label>}
 
       <Controller
         name={name}
         control={control}
         render={({ field }) => (
-          <input
+          <textarea
             {...field}
-            type="date"
+            placeholder={placeholder}
+            rows={rows}
             className="w-full border p-2 rounded-lg"
           />
         )}
@@ -28,6 +32,6 @@ const TimeInputField = <T extends FieldValues>({
       )}
     </div>
   );
-};
+}
 
-export default TimeInputField;
+export default TextareaController;

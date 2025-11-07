@@ -1,5 +1,5 @@
 import { LogOut } from "lucide-react";
-import { HeaderProps } from "./type";
+import { HeaderProps } from "../type";
 
 export const CalendarHeader = ({ onLogout }: HeaderProps) => (
   <div className="flex items-center justify-between mb-4">

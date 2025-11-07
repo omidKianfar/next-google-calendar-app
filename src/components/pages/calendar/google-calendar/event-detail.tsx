@@ -34,6 +34,7 @@ export default function EventDetailModal({
     if (endTime <= startTime) return alert("End time must be after start time");
 
     const dateStr = event?.start?.dateTime?.split("T")[0];
+
     const updatedEvent = {
       summary,
       description,
@@ -121,14 +122,20 @@ export default function EventDetailModal({
           <p className="text-gray-600 mb-1">
             <b>Start:</b>{" "}
             {event.start?.dateTime
-              ? new Date(event.start.dateTime).toLocaleString()
+              ? new Date(event.start.dateTime).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
               : "—"}
           </p>
 
           <p className="text-gray-600 mb-1">
             <b>End:</b>{" "}
             {event.end?.dateTime
-              ? new Date(event.end.dateTime).toLocaleString()
+              ? new Date(event.end.dateTime).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
               : "—"}
           </p>
 

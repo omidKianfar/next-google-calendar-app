@@ -10,8 +10,8 @@ export interface HeaderProps {
 
 export interface EventDetailProps {
   event: CalendarEvent | null;
-  onDelete: (id: string) => void;
-  onEdit: (id: string, updatedEvent: Partial<CalendarEvent>) => void;
+  onDelete?: (id: string) => void;
+  onEdit?: (id: string, updatedEvent: Partial<CalendarEvent>) => void;
 }
 export interface EventEditProps {
   setIsEditing: Dispatch<SetStateAction<boolean>>;

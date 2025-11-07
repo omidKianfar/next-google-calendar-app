@@ -1,4 +1,5 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 import { useState } from "react";
@@ -6,11 +7,11 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { CalendarHeader } from "./header";
 import ModalContainer from "@/components/atom/modal";
 import { useGoogleCalendar } from "@/hooks/use-google-calendar";
-import EventDetail from "./event-detail";
-import CreateEvent from "./create-event";
+import CreateEvent from "./create/create-event";
+import { CalendarHeader } from "./header/header";
+import DetailComponent from "./detail";
 
 export default function CalendarComponent() {
   const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -119,7 +120,7 @@ export default function CalendarComponent() {
 
           <ModalContainer open={open} handleClose={handleCloseModal}>
             {modalId === 1 && selectedEvent && (
-              <EventDetail
+              <DetailComponent
                 event={selectedEvent}
                 onDelete={handleDeleteEvent}
                 onEdit={handleEditEvent}

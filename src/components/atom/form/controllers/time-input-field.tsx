@@ -17,7 +17,7 @@ const TimeInputField = <T extends FieldValues>({
         render={({ field }) => (
           <input
             {...field}
-            type="date"
+            type="time"
             className="w-full border p-2 rounded-lg"
           />
         )}

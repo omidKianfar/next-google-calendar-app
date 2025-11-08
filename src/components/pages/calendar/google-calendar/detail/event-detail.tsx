@@ -12,19 +12,19 @@ const EventDetail = ({
   return (
     <div>
       <div className="flex justify-end ">
-        <div
+        <button
           onClick={() => setIsEditing(true)}
           className="py-1 px-2 mr-1 rounded-sm hover:bg-gray-100 "
         >
           <Pencil className="text-blue-400 hover:text-blue-600 cursor-pointer w-5" />
-        </div>
+        </button>
 
-        <div
+        <button
           onClick={() => onDelete?.(event.id ?? "")}
           className="py-1 px-2 rounded-sm hover:bg-gray-100 "
         >
           <Trash2 className="text-red-400 hover:text-red-600 cursor-pointer w-5" />
-        </div>
+        </button>
       </div>
 
       <hr className="my-2 border-1 border-orange-300" />

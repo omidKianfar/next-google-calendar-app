@@ -1,9 +1,13 @@
+import { OverridableTokenClientConfig } from "@react-oauth/google";
 import { Dispatch, SetStateAction } from "react";
 
 export interface CalendarViewProps {
   accessToken: string;
 }
 
+export interface SigninProps {
+  login: (overrideConfig?: OverridableTokenClientConfig | undefined) => void;
+}
 export interface HeaderProps {
   onLogout: () => void;
 }

@@ -68,9 +68,7 @@ const EventEdit = ({
   };
 
   return (
-    <div className="p-4 pr-0 bg-white rounded-xl w-full max-w-md">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">Edit Event</h2>
-
+    <div className="  bg-white rounded-xl w-full">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <InputField
           control={control}
@@ -103,18 +101,18 @@ const EventEdit = ({
           errors={errors}
         />
 
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-end mt-8 ">
           <button
             type="button"
             onClick={() => setIsEditing(false)}
-            className="px-4 py-2 rounded bg-gray-200"
+            className="mr-4 px-8 py-2 bg-orange-500 text-white cursor-pointer rounded-md border-2 hover:bg-transparent hover:border-orange-500 hover:text-orange-500 "
           >
             Cancel
           </button>
 
           <button
             type="submit"
-            className="px-4 py-2 rounded bg-blue-500 text-white"
+            className=" px-8 py-2 bg-blue-500 text-white cursor-pointer rounded-md border-2 hover:bg-transparent hover:border-blue-500 hover:text-blue-500 "
           >
             Save
           </button>

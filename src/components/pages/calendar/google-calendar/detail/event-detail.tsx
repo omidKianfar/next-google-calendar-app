@@ -1,5 +1,6 @@
 import React from "react";
 import { EventDetailProps, EventEditProps } from "../type";
+import { Pencil, Trash2 } from "lucide-react";
 
 const EventDetail = ({
   event,
@@ -10,30 +11,34 @@ const EventDetail = ({
 
   return (
     <div>
-      <div className="flex justify-end gap-2 mt-4">
-        <button
+      <div className="flex justify-end ">
+        <div
           onClick={() => setIsEditing(true)}
-          className="px-3 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500"
+          className="py-1 px-2 mr-1 rounded-sm hover:bg-gray-100 "
         >
-          Edit
-        </button>
+          <Pencil className="text-blue-400 hover:text-blue-600 cursor-pointer w-5" />
+        </div>
 
-        <button
+        <div
           onClick={() => onDelete?.(event.id ?? "")}
-          className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          className="py-1 px-2 rounded-sm hover:bg-gray-100 "
         >
-          Delete
-        </button>
+          <Trash2 className="text-red-400 hover:text-red-600 cursor-pointer w-5" />
+        </div>
+      </div>
+
+      <hr className="my-2 border-1 border-orange-300" />
+
+      <div className=" mb-4">
+        <label className="text-sm mb-1 font-bold text-blue-400">Summary</label>
+
+        <p className="text-gray-600 break-normal">
+          {event?.summary || "Untitled Event"}
+        </p>
       </div>
 
       <div className=" mb-4">
-        <label className="text-sm text-gray-700 mb-1">Summary</label>
-
-        <p className="text-gray-600">{event?.summary || "Untitled Event"}</p>
-      </div>
-
-      <div className=" mb-4">
-        <label className="text-sm text-gray-700 mb-1">Start</label>
+        <label className="text-sm font-bold text-blue-400 mb-1">Start</label>
 
         <p className="text-gray-600">
           {event?.start?.dateTime
@@ -46,7 +51,7 @@ const EventDetail = ({
       </div>
 
       <div className=" mb-4">
-        <label className="text-sm text-gray-700 mb-1">End</label>
+        <label className="text-sm font-bold text-blue-400 mb-1">End</label>
 
         <p className="text-gray-600">
           {event?.end?.dateTime
@@ -59,15 +64,17 @@ const EventDetail = ({
       </div>
 
       <div className=" mb-4">
-        <label className="text-sm text-gray-700 mb-1">Description</label>
+        <label className="text-sm font-bold text-blue-400 mb-1">
+          Description
+        </label>
 
-        <p className="text-gray-600">
+        <p className="text-gray-600 break-normal">
           {event?.description ? event?.description : "—"}
         </p>
       </div>
 
       <div className=" mb-4">
-        <label className="text-sm text-gray-700 mb-1">Creator</label>
+        <label className="text-sm font-bold text-blue-400 mb-1">Creator</label>
 
         <p className="text-gray-600">
           {event?.creator?.email ? event?.creator?.email : "—"}

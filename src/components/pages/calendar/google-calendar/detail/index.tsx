@@ -11,7 +11,7 @@ const DetailComponent = ({ event, onDelete, onEdit }: EventDetailProps) => {
 
   return (
     <div className="p-3">
-      <h2 className="text-xl font-semibold mb-4">
+      <h2 className="text-lg font-semibold mb-4 text-orange-400">
         {isEditing ? "Edit Event" : "Event Details"}
       </h2>
 
@@ -19,7 +19,11 @@ const DetailComponent = ({ event, onDelete, onEdit }: EventDetailProps) => {
         <EventEdit event={event} onEdit={onEdit} setIsEditing={setIsEditing} />
       ) : (
         <>
-          <EventDetail event={event} setIsEditing={setIsEditing} onDelete={onDelete} />
+          <EventDetail
+            event={event}
+            setIsEditing={setIsEditing}
+            onDelete={onDelete}
+          />
         </>
       )}
     </div>

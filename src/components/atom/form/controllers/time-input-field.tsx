@@ -9,7 +9,7 @@ const TimeInputField = <T extends FieldValues>({
 }: TimeInputFieldProps<T>) => {
   return (
     <div className="space-y-1">
-      {label && <label className="text-sm font-medium">{label}</label>}
+      {label && <label className="text-sm  text-blue-400">{label}</label>}
 
       <Controller
         name={name}
@@ -18,7 +18,7 @@ const TimeInputField = <T extends FieldValues>({
           <input
             {...field}
             type="time"
-            className="w-full border p-2 rounded-lg"
+            className="w-full my-1 border p-2 rounded-lg focus:outline-blue-400"
           />
         )}
       />

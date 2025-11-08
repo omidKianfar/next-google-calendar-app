@@ -12,7 +12,7 @@ function TextareaController<T extends FieldValues>({
 }: TextareaControllerProps<T>) {
   return (
     <div className={className}>
-      {label && <label className="text-sm font-medium">{label}</label>}
+      {label && <label className="text-sm  text-blue-400">{label}</label>}
 
       <Controller
         name={name}
@@ -22,7 +22,7 @@ function TextareaController<T extends FieldValues>({
             {...field}
             placeholder={placeholder}
             rows={rows}
-            className="w-full border p-2 rounded-lg"
+            className="w-full my-1 border p-2 rounded-lg focus:outline-blue-400"
           />
         )}
       />

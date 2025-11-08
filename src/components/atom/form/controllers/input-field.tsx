@@ -10,13 +10,9 @@ const InputField = <T extends FieldValues>({
   type = "text",
   className,
 }: InputControllerProps<T>) => {
-  {
-    label && <label className="text-sm font-medium">{label}</label>;
-  }
-
   return (
     <div className={className}>
-      {label && <label className="text-sm font-medium">{label}</label>}
+      {label && <label className="text-sm  text-blue-400">{label}</label>}
 
       <Controller
         name={name}
@@ -26,7 +22,7 @@ const InputField = <T extends FieldValues>({
             {...field}
             type={type}
             placeholder={placeholder}
-            className="w-full border p-2 rounded-lg"
+            className="w-full border p-2 my-1 rounded-lg focus:outline-blue-400"
           />
         )}
       />

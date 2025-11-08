@@ -12,6 +12,7 @@ import { useGoogleCalendar } from "@/hooks/use-google-calendar";
 import CreateEvent from "./create/create-event";
 import { CalendarHeader } from "./header/header";
 import DetailComponent from "./detail";
+import Signin from "./signin";
 
 export default function CalendarComponent() {
   const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -86,14 +87,7 @@ export default function CalendarComponent() {
   return (
     <div className="p-6 min-h-screen bg-gray-50">
       {!accessToken || !calendarId ? (
-        <div className="flex justify-center items-center h-screen">
-          <button
-            onClick={() => login()}
-            className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition"
-          >
-            Sign in with Google
-          </button>
-        </div>
+        <Signin login={login} />
       ) : (
         <>
           <CalendarHeader onLogout={handleLogout} />

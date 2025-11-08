@@ -45,8 +45,10 @@ const CreateEvent = ({ selectedDate, onCreate, onClose }: CreateEventProps) => {
   };
 
   return (
-    <div className="p-4 pr-0 bg-white rounded-xl w-full max-w-md">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">Create Event</h2>
+    <div className="p-4   ">
+      <h2 className="text-lg font-semibold mb-4 text-orange-400">
+        Create Event
+      </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <InputField
@@ -80,10 +82,10 @@ const CreateEvent = ({ selectedDate, onCreate, onClose }: CreateEventProps) => {
           label="End Time"
         />
 
-        <div className="flex justify-end gap-2 pt-2">
+        <div className="flex justify-end mt-8 ">
           <button
             type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+            className=" px-8 py-2 bg-blue-500 text-white cursor-pointer rounded-md border-2 hover:bg-transparent hover:border-blue-500 hover:text-blue-500 "
           >
             Save
           </button>

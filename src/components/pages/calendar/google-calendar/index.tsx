@@ -1,7 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useGoogleLogin, googleLogout } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -9,10 +8,11 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import ModalContainer from "@/components/atom/modal";
 import { useGoogleCalendar } from "@/hooks/use-google-calendar";
-import CreateEvent from "./create/create-event";
 import { CalendarHeader } from "./header/header";
-import DetailComponent from "./detail";
 import Signin from "./signin";
+import CreateEventModal from "./modals/create";
+import DetailModal from "./modals/detail";
+import LogoutModal from "./modals/logout";
 
 export default function CalendarComponent() {
   const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -21,7 +21,6 @@ export default function CalendarComponent() {
 
   const [open, setOpen] = useState(false);
   const [modalId, setModalId] = useState<number | null>(null);
-  const router = useRouter();
 
   const { events, calendarId, createEvent, updateEvent, deleteEvent } =
     useGoogleCalendar(accessToken);
@@ -35,9 +34,7 @@ export default function CalendarComponent() {
   });
 
   const handleLogout = () => {
-    googleLogout();
-    setAccessToken(null);
-    router.push("/calendar");
+    handleOpenModal(3);
   };
 
   const handleOpenModal = (id: number) => {
@@ -114,17 +111,23 @@ export default function CalendarComponent() {
 
           <ModalContainer open={open} handleClose={handleCloseModal}>
             {modalId === 1 && selectedEvent && (
-              <DetailComponent
+              <DetailModal
                 event={selectedEvent}
                 onDelete={handleDeleteEvent}
                 onEdit={handleEditEvent}
               />
             )}
             {modalId === 2 && selectedDate && (
-              <CreateEvent
+              <CreateEventModal
                 selectedDate={selectedDate}
                 onCreate={handleCreateEvent}
                 onClose={handleCloseModal}
+              />
+            )}
+            {modalId === 3 && (
+              <LogoutModal
+                onClose={handleCloseModal}
+                setAccessToken={setAccessToken}
               />
             )}
           </ModalContainer>

@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import { EventDetailProps } from "../type";
+import { EventDetailProps } from "../../type";
 import EventEdit from "./event-edit";
 import EventDetail from "./event-detail";
 
-const DetailComponent = ({ event, onDelete, onEdit }: EventDetailProps) => {
+const DetailModal = ({ event, onDelete, onEdit }: EventDetailProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   if (!event) return null;
@@ -30,4 +30,4 @@ const DetailComponent = ({ event, onDelete, onEdit }: EventDetailProps) => {
   );
 };
 
-export default DetailComponent;
+export default DetailModal;

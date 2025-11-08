@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 
 export const EventSchema = Yup.object({
-  summary: Yup.string().required("Enter event summery"),
-  description: Yup.string().required("Enter event description"),
+  summary: Yup.string().required("Enter summery"),
+  description: Yup.string().required("Enter description"),
   startTime: Yup.string().required("Select start time"),
   endTime: Yup.string()
     .required("Select end time")

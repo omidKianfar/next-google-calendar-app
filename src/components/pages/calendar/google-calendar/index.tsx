@@ -56,6 +56,7 @@ export default function CalendarComponent() {
   };
 
   const handelSeeEventDetail = (info: EventClickArg) => {
+    console.log("info", info);
 
     setSelectedEvent({
       id: info.event.id,
@@ -69,7 +70,7 @@ export default function CalendarComponent() {
     handleOpenModal(1);
   };
 
-  const handleDateClick = (info: DateClickArg ) => {
+  const handleDateClick = (info: DateClickArg) => {
     setSelectedDate(info.dateStr);
     handleOpenModal(2);
   };

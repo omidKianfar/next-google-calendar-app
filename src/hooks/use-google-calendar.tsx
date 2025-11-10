@@ -1,4 +1,5 @@
 "use client";
+import { CalendarEvent } from "@/components/pages/calendar/google-calendar/type";
 import { useEffect, useState } from "react";
 
 export function useGoogleCalendar(accessToken: string | null) {
@@ -83,7 +84,7 @@ export function useGoogleCalendar(accessToken: string | null) {
     }
   };
 
-  const createEvent = async (data: any) => {
+  const createEvent = async (data: CalendarEvent) => {
     if (!calendarId || !accessToken) return;
     try {
       await fetch(
@@ -101,7 +102,7 @@ export function useGoogleCalendar(accessToken: string | null) {
     }
   };
 
-  const updateEvent = async (id: string, data: any) => {
+  const updateEvent = async (id: string, data: CalendarEvent) => {
     if (!calendarId || !accessToken) return;
     try {
       await fetch(

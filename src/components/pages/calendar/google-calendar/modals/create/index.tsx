@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { CalendarEventInput, CreateEventProps, FormValues } from "../../type";
+import { CalendarEvent, CreateEventProps, FormValues } from "../../type";
 import { useMemo, useState } from "react";
 import TimeInputField from "@/components/atom/form/controllers/time-input-field";
 import { EventSchema } from "../../schema";
@@ -16,7 +16,7 @@ const CreateEventModal = ({
   onClose,
 }: CreateEventProps) => {
   const [sureModal, setSureModal] = useState<boolean>(false);
-  const [newEvent, setNewEvent] = useState<CalendarEventInput | null>(null);
+  const [newEvent, setNewEvent] = useState<CalendarEvent | null>(null);
 
   const defaultValues: FormValues = useMemo(
     () => ({
@@ -41,7 +41,7 @@ const CreateEventModal = ({
     const start = new Date(`${selectedDate}T${values.startTime}:00`);
     const end = new Date(`${selectedDate}T${values.endTime}:00`);
 
-    const event: CalendarEventInput = {
+    const event: CalendarEvent = {
       summary: values.summary,
       description: values.description,
       start: { dateTime: start.toISOString() },

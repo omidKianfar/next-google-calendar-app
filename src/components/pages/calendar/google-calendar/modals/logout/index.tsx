@@ -10,6 +10,7 @@ const LogoutModal = ({ onClose, setAccessToken }: LogoutProps) => {
     googleLogout();
     setAccessToken(null);
     router.push("/calendar");
+    onClose()
   };
   return (
     <div>

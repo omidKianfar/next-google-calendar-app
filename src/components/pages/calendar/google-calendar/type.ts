@@ -12,53 +12,48 @@ export interface HeaderProps {
   onLogout: () => void;
 }
 
-export interface LogoutProps {
-  onClose: () => void;
-  setAccessToken: Dispatch<SetStateAction<string | null>>;
-}
-
-export interface CalendarEventInput {
+export interface calenadrEventBase {
   summary: string;
   description: string;
-  start: { dateTime: string };
-  end: { dateTime: string };
 }
-
-export type FormValues = {
-  summary: string;
-  description: string;
-  startTime: string;
-  endTime: string;
-};
-
-export interface CalendarEvent {
+export interface CalendarEvent extends calenadrEventBase {
   id?: string;
-  summary: string;
-  description: string;
   htmlLink?: string;
   hangoutLink?: string;
   creator?: { email?: string };
-  start: { dateTime?: string; date?: string };
-  end: { dateTime?: string; date?: string };
+  start: { dateTime: string  |undefined};
+  end: { dateTime: string |undefined};
+}
+
+export interface closeProps {
+  onClose: () => void;
+}
+
+export interface LogoutProps extends closeProps {
+  setAccessToken: Dispatch<SetStateAction<string | null>>;
+}
+
+export interface FormValues extends calenadrEventBase {
+  startTime: string;
+  endTime: string;
 }
 
 export interface EventDetailProps {
   event: CalendarEvent | null;
-  onDelete?: (id: string) => void;
-  onEdit?: (id: string, updatedEvent: Partial<CalendarEvent>) => void;
+  onDelete: (id: string) => void;
+  onEdit: (id: string, updatedEvent: CalendarEvent) => void;
 }
 
-export interface CreateEventProps {
+export interface CreateEventProps extends closeProps {
   selectedDate: string | null;
-  onCreate: (eventData: CalendarEventInput) => void;
-  onClose: () => void;
+  onCreate: (eventData: CalendarEvent) => void;
 }
 
-export interface SureModalProps {
-  sureHandler: () => void;
-  setSureModal: Dispatch<SetStateAction<boolean>>;
-  newEvent?: CalendarEventInput | null;
-}
-export interface EventEditProps {
+export interface EventProps extends EventDetailProps {
   setIsEditing: Dispatch<SetStateAction<boolean>>;
+  setSureModal: Dispatch<SetStateAction<boolean>>;
+  setEventId: Dispatch<SetStateAction<string>>;
+  setNewEvent: Dispatch<SetStateAction<CalendarEvent | null>>;
+  sureHandler?: () => void;
+  newEvent?: CalendarEvent | null;
 }

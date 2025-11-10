@@ -1,14 +1,16 @@
-import { SureModalProps } from "../../../type";
+import { EventProps } from "../../../type";
 
 const SureCreateModal = ({
   sureHandler,
   setSureModal,
   newEvent,
-}: SureModalProps) => {
+}: Pick<EventProps, "setSureModal" | "sureHandler" | "newEvent">) => {
   return (
     <div className="w-full">
       <div>
-        <h2 className="text-md  mb-4 flex justify-center">Are you sure to crrate the event?</h2>
+        <h2 className="text-md  mb-4 flex justify-center">
+          Are you sure to create the event?
+        </h2>
       </div>
 
       <div className=" mb-4">
@@ -23,7 +25,7 @@ const SureCreateModal = ({
         <label className="text-sm font-bold text-blue-400 mb-1">Start</label>
 
         <p className="text-gray-600">
-          {newEvent?.start
+          {newEvent?.start?.dateTime
             ? new Date(newEvent?.start?.dateTime).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -36,7 +38,7 @@ const SureCreateModal = ({
         <label className="text-sm font-bold text-blue-400 mb-1">End</label>
 
         <p className="text-gray-600">
-          {newEvent?.end
+          {newEvent?.end?.dateTime
             ? new Date(newEvent?.end?.dateTime).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -65,7 +67,7 @@ const SureCreateModal = ({
         </button>
 
         <button
-          onClick={() => sureHandler()}
+          onClick={sureHandler}
           className=" px-8 py-2 bg-blue-500 text-white cursor-pointer rounded-md border-2 hover:bg-transparent hover:border-blue-500 hover:text-blue-500 "
         >
           Create

@@ -1,10 +1,11 @@
-import { SureModalProps } from "../../../type";
+import dayjs from "dayjs";
+import { EventProps } from "../../../../type";
 
 const SureEditModal = ({
   sureHandler,
   setSureModal,
   newEvent,
-}: SureModalProps) => {
+}: Pick<EventProps, "sureHandler" | "setSureModal" | "newEvent">) => {
   return (
     <div className="w-full">
       <div>
@@ -25,11 +26,8 @@ const SureEditModal = ({
         <label className="text-sm font-bold text-blue-400 mb-1">Start</label>
 
         <p className="text-gray-600">
-          {newEvent?.start
-            ? new Date(newEvent?.start?.dateTime).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })
+          {newEvent?.start.dateTime
+            ? dayjs(newEvent?.start.dateTime).format("hh:mm A")
             : "—"}
         </p>
       </div>
@@ -38,11 +36,8 @@ const SureEditModal = ({
         <label className="text-sm font-bold text-blue-400 mb-1">End</label>
 
         <p className="text-gray-600">
-          {newEvent?.end
-            ? new Date(newEvent?.end?.dateTime).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })
+          {newEvent?.end.dateTime
+            ? dayjs(newEvent?.end.dateTime).format("hh:mm A")
             : "—"}
         </p>
       </div>
@@ -67,7 +62,7 @@ const SureEditModal = ({
         </button>
 
         <button
-          onClick={() => sureHandler()}
+          onClick={sureHandler}
           className=" px-8 py-2 bg-blue-500 text-white cursor-pointer rounded-md border-2 hover:bg-transparent hover:border-blue-500 hover:text-blue-500 "
         >
           Update

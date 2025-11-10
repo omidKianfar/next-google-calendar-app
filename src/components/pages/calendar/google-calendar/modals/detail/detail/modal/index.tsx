@@ -1,9 +1,9 @@
-import { SureModalProps } from "../../../type";
+import { EventProps } from "../../../../type";
 
 const SureDeleteModal = ({
   sureHandler,
   setSureModal,
-}: SureModalProps) => {
+}: Pick<EventProps, "sureHandler" | "setSureModal">) => {
   return (
     <div className="w-full">
       <div>
@@ -22,7 +22,7 @@ const SureDeleteModal = ({
         </button>
 
         <button
-          onClick={() => sureHandler()}
+          onClick={sureHandler}
           className=" px-8 py-2 bg-blue-500 text-white cursor-pointer rounded-md border-2 hover:bg-transparent hover:border-blue-500 hover:text-blue-500 "
         >
           Delete

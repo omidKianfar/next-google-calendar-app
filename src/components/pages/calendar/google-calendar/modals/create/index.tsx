@@ -101,7 +101,9 @@ const CreateEventModal = ({
           <div className="flex justify-end mt-8 ">
             <button
               type="submit"
-              className=" px-8 py-2 bg-blue-500 text-white cursor-pointer rounded-md border-2 hover:bg-transparent hover:border-blue-500 hover:text-blue-500 "
+              className=" px-8 py-2 bg-blue-500 text-white cursor-pointer 
+              rounded-md border-2 hover:bg-transparent hover:border-blue-500
+              hover:text-blue-500 "
             >
               Next
             </button>

@@ -98,7 +98,7 @@ export default function CalendarComponent() {
         <>
           <CalendarHeader onLogout={handleLogout} />
 
-          <div className="bg-white rounded-xl shadow p-4">
+          <div className="bg-white rounded-lg shadow p-4">
             <Suspense fallback={<CalendarSkeleton />}>
               <FullCalendar
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -109,12 +109,28 @@ export default function CalendarComponent() {
                 height="80vh"
                 selectable
                 headerToolbar={{
-                  left: "prev,next today",
-                  center: "title",
-                  right: "dayGridMonth,timeGridWeek,timeGridDay",
+                  left: "title",
+                  center: "",
+                  right: "prev,next today",
                 }}
                 eventDidMount={(info) => {
                   info.el.style.cursor = "pointer";
+                  info.el.classList.add(
+                    "bg-blue-500",
+                    "text-white",
+                    "rounded",
+                    "px-1",
+                    "transition",
+                    "duration-400",
+                    "hover:text-black"
+                  );
+                }}
+                dayCellClassNames={(arg) => {
+                  const classes = ["transition", "duration-200"];
+                  if (!arg.isToday) {
+                    classes.push("hover:bg-gray-200");
+                  }
+                  return classes;
                 }}
               />
             </Suspense>

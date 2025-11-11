@@ -10,7 +10,6 @@ import { useGoogleCalendar } from "@/hooks/use-google-calendar";
 import { CalendarHeader } from "./header/header";
 import Signin from "./signin";
 import { LoadingSpinner } from "@/components/atom/loading/spinner";
-import { CalendarSkeleton } from "@/components/atom/loading/calendar-skeleton";
 import { CalendarEvent } from "./type";
 import { EventClickArg } from "@fullcalendar/core";
 
@@ -97,9 +96,8 @@ export default function CalendarComponent() {
       ) : (
         <>
           <CalendarHeader onLogout={handleLogout} />
-
-          <div className="bg-white rounded-lg shadow p-4">
-            <Suspense fallback={<CalendarSkeleton />}>
+          <Suspense fallback={<LoadingSpinner />}>
+            <div className="bg-white rounded-lg shadow p-4">
               <FullCalendar
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
@@ -133,11 +131,9 @@ export default function CalendarComponent() {
                   return classes;
                 }}
               />
-            </Suspense>
-          </div>
+            </div>
 
-          <ModalContainer open={open} handleClose={handleCloseModal}>
-            <Suspense fallback={<LoadingSpinner />}>
+            <ModalContainer open={open} handleClose={handleCloseModal}>
               {modalId === 1 && selectedEvent && (
                 <DetailModal
                   event={selectedEvent}
@@ -152,14 +148,14 @@ export default function CalendarComponent() {
                   onClose={handleCloseModal}
                 />
               )}
-            </Suspense>
-            {modalId === 3 && (
-              <LogoutModal
-                onClose={handleCloseModal}
-                setAccessToken={setAccessToken}
-              />
-            )}
-          </ModalContainer>
+              {modalId === 3 && (
+                <LogoutModal
+                  onClose={handleCloseModal}
+                  setAccessToken={setAccessToken}
+                />
+              )}
+            </ModalContainer>
+          </Suspense>
         </>
       )}
     </div>

@@ -9,7 +9,7 @@ import ModalContainer from "@/components/atom/modal";
 import { useGoogleCalendar } from "@/hooks/use-google-calendar";
 import { CalendarHeader } from "./header/header";
 import Signin from "./signin";
-import { LoadingSpinner } from "@/components/atom/loading/spinner";
+import LoadingSpinner  from "@/components/atom/loading/spinner";
 import { CalendarEvent } from "./type";
 import { EventClickArg } from "@fullcalendar/core";
 

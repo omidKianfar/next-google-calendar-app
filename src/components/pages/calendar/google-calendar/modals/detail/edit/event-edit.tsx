@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState } from "react";
 import { CalendarEvent, EventProps } from "../../../type";
 import EditBody from "./body";
-import { LoadingSpinner } from "@/components/atom/loading/spinner";
+import  LoadingSpinner  from "@/components/atom/loading/spinner";
 
 const SureEditModal = lazy(() => import("./modal"));
 

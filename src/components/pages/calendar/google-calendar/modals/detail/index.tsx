@@ -1,7 +1,7 @@
 "use client";
 import { lazy, Suspense, useState } from "react";
 import { EventDetailProps } from "../../type";
-import { LoadingSpinner } from "@/components/atom/loading/spinner";
+import  LoadingSpinner  from "@/components/atom/loading/spinner";
 
 const EventEdit = lazy(() => import("./edit/event-edit"));
 const EventDetail = lazy(() => import("./detail/event-detail"));

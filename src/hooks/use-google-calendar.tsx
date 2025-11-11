@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export function useGoogleCalendar(accessToken: string | null) {
   const [calendarId, setCalendarId] = useState<string | null>(null);
-  const [events, setEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<CalendarEvent[]>([]);
 
   useEffect(() => {
     if (!accessToken) return;

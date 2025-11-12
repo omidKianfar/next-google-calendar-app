@@ -1,8 +1,11 @@
 "use client";
 import { CalendarEvent } from "@/components/pages/calendar/google-calendar/type";
+import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 
 export function useGoogleCalendar(accessToken: string | null) {
+  const { enqueueSnackbar } = useSnackbar();
+
   const [calendarId, setCalendarId] = useState<string | null>(null);
   const [events, setEvents] = useState<CalendarEvent[]>([]);
 
@@ -15,6 +18,10 @@ export function useGoogleCalendar(accessToken: string | null) {
           "https://www.googleapis.com/calendar/v3/users/me/calendarList",
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
+
+        if (!result.ok) {
+          throw new Error(`Error: ${result.status} - ${result.statusText}`);
+        }
 
         const response = await result.json();
 
@@ -39,6 +46,11 @@ export function useGoogleCalendar(accessToken: string | null) {
           `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
+
+        if (!result.ok) {
+          throw new Error(`Error: ${result.status} - ${result.statusText}`);
+        }
+
         const response = await result.json();
 
         const items = response.items.map((item: any) => ({
@@ -66,6 +78,11 @@ export function useGoogleCalendar(accessToken: string | null) {
         `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
+
+      if (!result.ok) {
+        throw new Error(`Error: ${result.status} - ${result.statusText}`);
+      }
+
       const response = await result.json();
 
       const items = response.items.map((item: any) => ({
@@ -87,7 +104,7 @@ export function useGoogleCalendar(accessToken: string | null) {
   const createEvent = async (data: CalendarEvent) => {
     if (!calendarId || !accessToken) return;
     try {
-      await fetch(
+      const result = await fetch(
         `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
         {
           method: "POST",
@@ -96,16 +113,26 @@ export function useGoogleCalendar(accessToken: string | null) {
         }
       );
 
+      if (!result.ok) {
+        throw new Error(`Error: ${result.status} - ${result.statusText}`);
+      }
+
       await fetchEvents();
+
+      enqueueSnackbar("Your event was created successfully!", {
+        variant: "success",
+      });
     } catch (err) {
-      console.error("Failed to create event", err);
+      enqueueSnackbar(`Error: ${err}.Please try again.`, {
+        variant: "error",
+      });
     }
   };
 
   const updateEvent = async (id: string, data: CalendarEvent) => {
     if (!calendarId || !accessToken) return;
     try {
-      await fetch(
+      const result = await fetch(
         `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events/${id}`,
         {
           method: "PUT",
@@ -114,16 +141,26 @@ export function useGoogleCalendar(accessToken: string | null) {
         }
       );
 
+      if (!result.ok) {
+        throw new Error(`Error: ${result.status} - ${result.statusText}`);
+      }
+
       await fetchEvents();
+
+      enqueueSnackbar("Your event was updated successfully!", {
+        variant: "success",
+      });
     } catch (err) {
-      console.error("Failed to update event", err);
+      enqueueSnackbar(`Error: ${err}.Please try again.`, {
+        variant: "error",
+      });
     }
   };
 
   const deleteEvent = async (id: string) => {
     if (!calendarId || !accessToken) return;
     try {
-      await fetch(
+      const result = await fetch(
         `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events/${id}`,
         {
           method: "DELETE",
@@ -131,9 +168,19 @@ export function useGoogleCalendar(accessToken: string | null) {
         }
       );
 
+      if (!result.ok) {
+        throw new Error(`Error: ${result.status} - ${result.statusText}`);
+      }
+
       await fetchEvents();
+
+      enqueueSnackbar("Your event was deleted successfully!", {
+        variant: "success",
+      });
     } catch (err) {
-      console.error("Failed to delete event", err);
+      enqueueSnackbar(`Error: ${err}.Please try again.`, {
+        variant: "error",
+      });
     }
   };
 

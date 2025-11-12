@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
+import NotistackProvider from "@/components/atom/error-handler/notistack";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${poppins.variable} antialiased`}>
-        {children}
+        <NotistackProvider>{children}</NotistackProvider>
       </body>
     </html>
   );

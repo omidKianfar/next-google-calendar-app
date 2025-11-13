@@ -20,8 +20,8 @@ export default function NotFound() {
           onClick={() => router.push("/")}
           className="group flex items-center gap-2
             text-white  transition cursor-pointer 
-            border-2 bg-amber-400 p-2 rounded-md
-            hover:text-amber-400 hover:border-amber-400
+            border-2 bg-blue-400 p-2 rounded-md
+            hover:text-blue-400 hover:border-blue-400
             hover:bg-transparent"
         >
           <LogOut className="w-5 h-5 group-hover:rotate-12 transition-transform" />

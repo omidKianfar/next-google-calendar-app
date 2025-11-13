@@ -20,12 +20,12 @@ const EditBody = ({
 >) => {
   const initialStartTime = useMemo(() => {
     if (!event?.start.dateTime) return "";
-    return dayjs(event.start.dateTime).format("hh:mm");
+    return dayjs(event.start.dateTime).format("HH:mm");
   }, [event]);
 
   const initialEndTime = useMemo(() => {
     if (!event?.end.dateTime) return "";
-    return dayjs(event.end.dateTime).format("hh:mm");
+    return dayjs(event.end.dateTime).format("HH:mm");
   }, [event]);
 
   const defaultValues: FormValues = useMemo(
@@ -54,8 +54,8 @@ const EditBody = ({
       ? event?.start?.dateTime.split("T")[0]
       : undefined;
 
-    const start = dayjs(`${dateStr} ${values.startTime}`, "hh:mm a");
-    const end = dayjs(`${dateStr} ${values.endTime}`, "hh:mm a");
+    const start = dayjs(`${dateStr} ${values.startTime}`, "HH:mm A");
+    const end = dayjs(`${dateStr} ${values.endTime}`, "HH:mm A");
 
     const updatedEvent: CalendarEvent = {
       summary: values.summary,

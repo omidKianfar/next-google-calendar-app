@@ -9,7 +9,7 @@ const LogoutModal = ({ onClose, setAccessToken }: LogoutProps) => {
   const handelLogout = () => {
     googleLogout();
     setAccessToken(null);
-    router.push("/calendar");
+    router.push("/");
     onClose()
   };
   return (

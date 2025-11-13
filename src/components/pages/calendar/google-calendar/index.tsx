@@ -55,8 +55,6 @@ export default function CalendarComponent() {
   };
 
   const handelSeeEventDetail = (info: EventClickArg) => {
-    console.log("info", info);
-
     setSelectedEvent({
       id: info.event.id,
       summary: info.event.title,

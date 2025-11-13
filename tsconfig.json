@@ -36,7 +36,7 @@
     ".next/types/**/*.ts",
     "src/global.d.ts",
     ".next/dev/types/**/*.ts"
-  ],
+, "src/components/pages/calendar/google-calendar/test-with-jest/.schema-test.ts"  ],
   "exclude": [
     "node_modules"
   ]

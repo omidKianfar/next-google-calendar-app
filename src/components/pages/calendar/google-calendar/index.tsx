@@ -9,7 +9,7 @@ import ModalContainer from "@/components/atom/modal";
 import { useGoogleCalendar } from "@/hooks/use-google-calendar";
 import { CalendarHeader } from "./header/header";
 import Signin from "./signin";
-import LoadingSpinner  from "@/components/atom/loading/spinner";
+import LoadingSpinner from "@/components/atom/loading/spinner";
 import { CalendarEvent } from "./type";
 import { EventClickArg } from "@fullcalendar/core";
 
@@ -90,11 +90,11 @@ export default function CalendarComponent() {
   };
 
   return (
-    <div className="p-6 min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       {!accessToken || !calendarId ? (
         <Signin login={login} />
       ) : (
-        <>
+        <div className="p-4">
           <CalendarHeader onLogout={handleLogout} />
           <Suspense fallback={<LoadingSpinner />}>
             <div className="bg-white rounded-lg shadow p-4">
@@ -126,7 +126,7 @@ export default function CalendarComponent() {
                 dayCellClassNames={(arg) => {
                   const classes = ["transition", "duration-200"];
                   if (!arg.isToday) {
-                    classes.push("hover:bg-gray-200");
+                    classes.push("hover:bg-green-200");
                   }
                   return classes;
                 }}
@@ -156,7 +156,7 @@ export default function CalendarComponent() {
               )}
             </ModalContainer>
           </Suspense>
-        </>
+        </div>
       )}
     </div>
   );

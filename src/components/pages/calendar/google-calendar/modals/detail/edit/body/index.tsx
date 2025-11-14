@@ -1,12 +1,12 @@
 import InputField from "@/components/atom/form/controllers/input-field";
-import TextareaController from "@/components/atom/form/controllers/textarea-field";
 import TimeInputField from "@/components/atom/form/controllers/time-input-field";
 import { useMemo } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { EventSchema } from "../../../../schema";
 import dayjs from "dayjs";
 import { CalendarEvent, EventProps, FormValues } from "../../../../type";
+import TextareaFiled from "@/components/atom/form/controllers/textarea-field";
 
 const EditBody = ({
   event,
@@ -38,14 +38,12 @@ const EditBody = ({
     [event, initialStartTime, initialEndTime]
   );
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>({
+  const methods = useForm<FormValues>({
     resolver: yupResolver(EventSchema),
     defaultValues,
   });
+
+  const { handleSubmit } = methods;
 
   const onSubmit = (values: FormValues) => {
     if (!event || !event.start) return;
@@ -71,59 +69,47 @@ const EditBody = ({
 
   return (
     <div className="bg-white rounded-xl w-full">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <InputField
-          control={control}
-          name="summary"
-          label="Title"
-          placeholder="Event title"
-          errors={errors}
-        />
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <InputField
+            name="summary"
+            label="Title"
+            placeholder="Enter your title"
+          />
 
-        <TextareaController
-          control={control}
-          name="description"
-          label="Description"
-          placeholder="Event description"
-          rows={3}
-          errors={errors}
-        />
+          <TextareaFiled
+            name="description"
+            label="Description"
+            placeholder="Enter your description"
+            rows={3}
+          />
 
-        <TimeInputField
-          control={control}
-          name="startTime"
-          label="Start Time"
-          errors={errors}
-        />
+          <TimeInputField name="startTime" label="Start Time" />
 
-        <TimeInputField
-          control={control}
-          name="endTime"
-          label="End Time"
-          errors={errors}
-        />
+          <TimeInputField name="endTime" label="End Time" />
 
-        <div className="flex justify-end mt-8">
-          <button
-            type="button"
-            onClick={() => setIsEditing(false)}
-            className="mr-4 px-8 py-2 bg-orange-500 text-white 
+          <div className="flex justify-end mt-8">
+            <button
+              type="button"
+              onClick={() => setIsEditing(false)}
+              className="mr-4 px-8 py-2 bg-orange-500 text-white 
             cursor-pointer rounded-md border-2 hover:bg-transparent
             hover:border-orange-500 hover:text-orange-500"
-          >
-            Cancel
-          </button>
+            >
+              Cancel
+            </button>
 
-          <button
-            type="submit"
-            className="px-8 py-2 bg-blue-500 text-white cursor-pointer
+            <button
+              type="submit"
+              className="px-8 py-2 bg-blue-500 text-white cursor-pointer
             rounded-md border-2 hover:bg-transparent hover:border-blue-500
             hover:text-blue-500"
-          >
-            Next
-          </button>
-        </div>
-      </form>
+            >
+              Next
+            </button>
+          </div>
+        </form>
+      </FormProvider>
     </div>
   );
 };

@@ -2,10 +2,8 @@ import { Control, FieldErrors, FieldValues, Path } from "react-hook-form";
 
 export interface BaseControllerProps<T extends FieldValues> {
   name: Path<T>;
-  control: Control<T>;
   label?: string;
   placeholder?: string;
-  errors?: FieldErrors<T>;
   className?: string;
 }
 

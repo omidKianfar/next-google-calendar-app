@@ -1,18 +1,25 @@
-import { Controller, FieldValues } from "react-hook-form";
+import { Controller, FieldValues, useFormContext } from "react-hook-form";
 import { InputControllerProps } from "./type";
 
 const InputField = <T extends FieldValues>({
   name,
-  control,
   label,
   placeholder,
-  errors,
   type = "text",
   className,
 }: InputControllerProps<T>) => {
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
   return (
     <div className={className}>
-      {label && <label className="text-sm  text-blue-400">{label}</label>}
+      {label && (
+        <label htmlFor={name} className="text-sm  text-blue-400">
+          {label}
+        </label>
+      )}
 
       <Controller
         name={name}
@@ -20,9 +27,10 @@ const InputField = <T extends FieldValues>({
         render={({ field }) => (
           <input
             {...field}
+            id={name}
             type={type}
             placeholder={placeholder}
-            className="w-full border p-2 my-1 rounded-lg focus:outline-blue-400"
+            className="w-full border p-2 my-1 rounded-lg text-sm focus:outline-blue-400 placeholder:text-sm px-2"
           />
         )}
       />

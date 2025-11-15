@@ -12,6 +12,7 @@ export default function ModalContainer({
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
       onClick={handleClose}
+      data-testid="modal-backdrop"
     >
       <div
         className="relative bg-white rounded-2xl shadow-xl p-4 max-w-lg w-full mx-4"
@@ -20,6 +21,7 @@ export default function ModalContainer({
         {children}
         <button
           onClick={handleClose}
+          role="button"
           className="absolute top-7 right-7 text-gray-500 hover:text-gray-700 cursor-pointer"
         >
           <CircleX className="hover:text-red-500" />

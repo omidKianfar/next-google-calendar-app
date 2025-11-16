@@ -20,7 +20,7 @@ const SureDeleteModal = ({
           cursor-pointer rounded-md border-2 hover:bg-transparent
           hover:border-orange-500 hover:text-orange-500 "
         >
-          Cancel
+          Back
         </button>
 
         <button

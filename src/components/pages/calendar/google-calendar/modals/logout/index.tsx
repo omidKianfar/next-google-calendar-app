@@ -15,7 +15,7 @@ const LogoutModal = ({ onClose, setAccessToken }: LogoutProps) => {
   return (
     <div>
       <div className="p-3 flex  justify-center ">
-        <h2 className="text-md  mb-4 ">Are you sure to lgout the calendar?</h2>
+        <h2 className="text-md  mb-4 ">Are you sure to logout the calendar?</h2>
       </div>
 
       <div className="flex justify-center mt-4  w-full">

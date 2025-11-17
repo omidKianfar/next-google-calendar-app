@@ -59,8 +59,8 @@ export default function CalendarComponent() {
       id: info.event.id,
       summary: info.event.title,
       description: info.event.extendedProps.description ?? "",
-      start: { dateTime: info.event.start?.toISOString() },
-      end: { dateTime: info.event.end?.toISOString() },
+      start: { dateTime: info.event.start!.toISOString() ?? "" },
+      end: { dateTime: info.event.end!.toISOString() ?? "" },
       creator: { email: info.event.extendedProps.creator ?? "" },
       htmlLink: info.event.extendedProps.htmlLink ?? "",
     });

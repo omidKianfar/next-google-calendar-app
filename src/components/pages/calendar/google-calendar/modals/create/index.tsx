@@ -42,8 +42,8 @@ const CreateEventModal = ({
     const event: CalendarEvent = {
       summary: values.summary,
       description: values.description,
-      start: { dateTime: start.toISOString() },
-      end: { dateTime: end.toISOString() },
+      start: { dateTime: start!.toISOString() ?? "" },
+      end: { dateTime: end!.toISOString() ?? "" },
     };
     setNewEvent(event);
     setSureModal(true);

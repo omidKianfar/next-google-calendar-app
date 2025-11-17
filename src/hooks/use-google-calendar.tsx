@@ -7,7 +7,7 @@ export function useGoogleCalendar(accessToken: string | null) {
   const { enqueueSnackbar } = useSnackbar();
 
   const [calendarId, setCalendarId] = useState<string | null>(null);
-  const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [events, setEvents] = useState<any[]>([]);
 
   useEffect(() => {
     if (!accessToken) return;

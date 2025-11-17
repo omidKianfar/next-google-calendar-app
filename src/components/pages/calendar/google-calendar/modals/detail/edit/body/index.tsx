@@ -58,8 +58,8 @@ const EditBody = ({
     const updatedEvent: CalendarEvent = {
       summary: values.summary,
       description: values.description,
-      start: { dateTime: start.toISOString() },
-      end: { dateTime: end.toISOString() },
+      start: { dateTime: start!.toISOString() ?? "" },
+      end: { dateTime: end!.toISOString() ?? "" },
     };
 
     setEventId?.(event.id ?? "");

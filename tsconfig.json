@@ -13,7 +13,8 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "types": ["jest"],
+    "types": ["jest", "@testing-library/jest-dom"],
+    "typeRoots": ["./types", "./node_modules/@types"],
     "plugins": [
       {
         "name": "next"
@@ -31,6 +32,7 @@
     "**/*.d.ts",
     ".next/types/**/*.ts",
     "src/global.d.ts",
+    "src/types/jest.d.ts",
     ".next/dev/types/**/*.ts",
     "src/components/pages/calendar/google-calendar/test-with-jest/.schema-test.ts"
   ],

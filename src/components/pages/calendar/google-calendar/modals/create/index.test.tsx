@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import CreateEventModal from "./index";
 
 const Wrapper = () => {
@@ -24,19 +24,15 @@ describe("CreateEventModal", () => {
     render(<Wrapper />);
 
     const textInput = screen.getByLabelText(/Title/i) as HTMLInputElement;
-
-    const teaxtarea = screen.getByLabelText(/Description/i) as HTMLInputElement;
-
+    const textarea = screen.getByLabelText(/Description/i) as HTMLInputElement;
     const timeInputStart = screen.getByLabelText(
       /Start Time/i
     ) as HTMLInputElement;
-
     const timeInputEnd = screen.getByLabelText(/End Time/i) as HTMLInputElement;
-
     const button = screen.getByRole("button", { name: /Next/i });
 
     expect(textInput).toBeInTheDocument();
-    expect(teaxtarea).toBeInTheDocument();
+    expect(textarea).toBeInTheDocument();
     expect(timeInputStart).toBeInTheDocument();
     expect(timeInputEnd).toBeInTheDocument();
     expect(button).toBeInTheDocument();
@@ -46,37 +42,26 @@ describe("CreateEventModal", () => {
     render(<Wrapper />);
 
     const textInput = screen.getByLabelText(/Title/i) as HTMLInputElement;
-
-    const teaxtarea = screen.getByLabelText(/Description/i) as HTMLInputElement;
-
+    const textarea = screen.getByLabelText(/Description/i) as HTMLInputElement;
     const timeInputStart = screen.getByLabelText(
       /Start Time/i
     ) as HTMLInputElement;
-
     const timeInputEnd = screen.getByLabelText(/End Time/i) as HTMLInputElement;
-
-    const button = screen.getByRole("button", { name: /Next/i }) as HTMLButtonElement;
+    const button = screen.getByRole("button", {
+      name: /Next/i,
+    }) as HTMLButtonElement;
 
     const ModalTitle = await screen.findByText(/Create Event/i);
-
     expect(ModalTitle).toBeInTheDocument();
 
-    fireEvent.change(textInput, {
-      target: { value: "Test Event" },
+    await act(async () => {
+      fireEvent.change(textInput, { target: { value: "Test Event" } });
+      fireEvent.change(textarea, { target: { value: "This is a test" } });
+      fireEvent.change(timeInputStart, { target: { value: "10:00" } });
+      fireEvent.change(timeInputEnd, { target: { value: "11:00" } });
+      fireEvent.click(button);
     });
 
-    fireEvent.change(teaxtarea, {
-      target: { value: "This is a test" },
-    });
-
-    fireEvent.change(timeInputStart, {
-      target: { value: "10:00" },
-    });
-
-    fireEvent.change(timeInputEnd, {
-      target: { value: "11:00" },
-    });
-
-    fireEvent.click(button);
+    expect(screen.getByText(/Create Event/i)).toBeInTheDocument();
   });
 });

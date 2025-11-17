@@ -4,8 +4,6 @@ A modern and full–featured **Google Calendar client** built with **Next.js**, 
 
 This project is primarily designed for **desktop browsers** and integrates the official **Google Calendar API** via secure OAuth 2.0 authentication.
 
----
-
 ##  Features
 
 *  **Google OAuth Login**
@@ -18,8 +16,6 @@ This project is primarily designed for **desktop browsers** and integrates the o
 *  **Modular & scalable architecture**
 *  **Unit tests with Jest + React Testing Library**
 
----
-
 ##  Screenshots
 
 ### Calendar View
@@ -29,8 +25,6 @@ This project is primarily designed for **desktop browsers** and integrates the o
 ### Events & Modals
 
 ![Screenshot 2](public/image-4.png)
-
----
 
 ## 🛠 Tech Stack
 
@@ -58,8 +52,6 @@ This project is primarily designed for **desktop browsers** and integrates the o
 * Jest
 * React Testing Library
 
----
-
 ##  Installation
 
 ### 1. Clone the project
@@ -81,8 +73,6 @@ yarn install
 ```bash
 npm run dev
 ```
-
----
 
 ##  Google OAuth Setup (Required)
 
@@ -138,15 +128,11 @@ Enable:
 * `/auth/calendar`
 * `/auth/calendar.events`
 
----
-
 ##  Running Tests
 
 ```bash
 npm run test
 ```
-
----
 
 ##  Project Architecture (Interview-Friendly)
 
@@ -169,8 +155,6 @@ src
 *  OAuth logic isolated from UI
 *  FullCalendar inside Suspense for smoother loading
 
----
-
 ##  Why This Project Is Valuable (For Recruiters)
 
 * Demonstrates advanced **React / Next.js architecture**
@@ -179,8 +163,6 @@ src
 * Includes unit testing setup
 * Clean UI/UX and scalable design
 * Strong example for portfolios and frontend interviews
-
----
 
 ##  Copyright
 

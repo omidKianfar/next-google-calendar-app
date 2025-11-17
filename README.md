@@ -6,21 +6,21 @@ This project is primarily designed for **desktop browsers** and integrates the o
 
 ---
 
-## 🚀 Features
+##  Features
 
-* 🔐 **Google OAuth Login**
-* 📅 **View Google Calendar events**
-* ➕ **Create events**
-* ✏️ **Edit events**
-* ❌ **Delete events**
-* 🔄 **Real–time event rendering** using FullCalendar
-* 🎨 **Modern UI** using Tailwind CSS
-* 📦 **Modular & scalable architecture**
-* 🧪 **Unit tests with Jest + React Testing Library**
+*  **Google OAuth Login**
+*  **View Google Calendar events**
+*  **Create events**
+*  **Edit events**
+*  **Delete events**
+*  **Real–time event rendering** using FullCalendar
+*  **Modern UI** using Tailwind CSS
+*  **Modular & scalable architecture**
+*  **Unit tests with Jest + React Testing Library**
 
 ---
 
-## 🖼 Screenshots
+##  Screenshots
 
 ### Calendar View
 
@@ -60,7 +60,7 @@ This project is primarily designed for **desktop browsers** and integrates the o
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 ### 1. Clone the project
 
@@ -84,7 +84,7 @@ npm run dev
 
 ---
 
-## 🔐 Google OAuth Setup (Required)
+##  Google OAuth Setup (Required)
 
 ### 1. Go to Google Cloud Console
 
@@ -140,7 +140,7 @@ Enable:
 
 ---
 
-## 🧪 Running Tests
+##  Running Tests
 
 ```bash
 npm run test
@@ -148,7 +148,7 @@ npm run test
 
 ---
 
-## 🧩 Project Architecture (Interview-Friendly)
+##  Project Architecture (Interview-Friendly)
 
 ```
 src
@@ -163,15 +163,15 @@ src
 
 ### **Architecture Principles**
 
-* 🧱 Separation of concerns (UI / logic / API)
-* ♻️ Reusable components
-* ⚡ Lazy-loaded modals for performance
-* 🔒 OAuth logic isolated from UI
-* 📌 FullCalendar inside Suspense for smoother loading
+*  Separation of concerns (UI / logic / API)
+*  Reusable components
+*  Lazy-loaded modals for performance
+*  OAuth logic isolated from UI
+*  FullCalendar inside Suspense for smoother loading
 
 ---
 
-## 🎯 Why This Project Is Valuable (For Recruiters)
+##  Why This Project Is Valuable (For Recruiters)
 
 * Demonstrates advanced **React / Next.js architecture**
 * Real OAuth 2.0 integration
@@ -182,6 +182,6 @@ src
 
 ---
 
-## 📄 Copyright
+##  Copyright
 
 2025

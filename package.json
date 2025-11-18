@@ -7,9 +7,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "test": "jest --watchAll",
-    "cypress": "cypress open",
-    "cypress:run": "cypress run"
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.19",
@@ -37,12 +35,10 @@
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "cypress": "^15.6.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
     "jest": "^30.2.0",

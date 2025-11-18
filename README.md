@@ -30,16 +30,16 @@ This project is primarily designed for **desktop browsers** and integrates the o
 
 ### **Frontend**
 
-* Next.js (App Router)
+* Next.js
 * TypeScript
 * Tailwind CSS
 * FullCalendar
 * React Hook Form
 * Yup
-* Notistack
 * Day.js
 * Lottie React
 * Lucide Icons
+* Notistack
 * Google Fonts
 
 ### **Auth & API**
@@ -139,7 +139,7 @@ npm run test
 ```
 src
 ├── app
-│   └── page/        → Main calendar page
+│   └── page.tsx        → Main calendar page
 ├── components/          → UI components & atoms
 ├── hooks/
 │   └── use-google-calendar.tsx

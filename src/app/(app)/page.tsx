@@ -1,12 +1,7 @@
 import GoogleCalendarComponent from "@/components/pages/calendar";
-import Layout from "./layout";
 
 const CalendarPage = () => {
-  return (
-    <Layout>
-      <GoogleCalendarComponent />
-    </Layout>
-  );
+  return <GoogleCalendarComponent />;
 };
 
 export default CalendarPage;

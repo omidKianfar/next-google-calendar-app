@@ -7,6 +7,7 @@ const InputField = <T extends FieldValues>({
   placeholder,
   type = "text",
   className,
+  autoFocus
 }: InputControllerProps<T>) => {
   const {
     control,
@@ -30,6 +31,7 @@ const InputField = <T extends FieldValues>({
             id={name}
             type={type}
             placeholder={placeholder}
+            autoFocus={autoFocus}
             className="w-full border p-2 my-1 rounded-lg text-sm focus:outline-blue-400 placeholder:text-sm px-2"
           />
         )}

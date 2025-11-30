@@ -1,4 +1,4 @@
-import { Control, FieldErrors, FieldValues, Path } from "react-hook-form";
+import { FieldValues, Path } from "react-hook-form";
 
 export interface BaseControllerProps<T extends FieldValues> {
   name: Path<T>;
@@ -10,6 +10,7 @@ export interface BaseControllerProps<T extends FieldValues> {
 export interface InputControllerProps<T extends FieldValues>
   extends BaseControllerProps<T> {
   type?: string;
+  autoFocus?: boolean;
 }
 
 export type TextareaControllerProps<T extends FieldValues> =

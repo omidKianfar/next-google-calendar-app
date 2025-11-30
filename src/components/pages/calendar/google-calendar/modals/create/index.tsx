@@ -70,6 +70,7 @@ const CreateEventModal = ({
               name="summary"
               label="Title"
               placeholder="Enter your title"
+              autoFocus
             />
 
             <TextareaFiled

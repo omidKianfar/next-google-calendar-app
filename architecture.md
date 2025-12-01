@@ -39,31 +39,29 @@ useGoogleCalendar(accessToken)
 Modals and heavy interactive components load using:
 React.lazy() + <Suspense> : for modal lazy loading
 
-### Accessibility (A11y)
-
-Includes ARIA labels, keyboard support, ESC close, focus trapping, and high‑contrast UI.
-
 ## 3. Project Structure
 
+```
 src/
-├── app/
-│ ├── layout.tsx
-│ └── (app)/
-│ ├── page.tsx
-│ └── layout.tsx
+├── app
+│   ├── layout.tsx
+│   └── (app)
+│       ├── page.tsx
+│       └── layout.tsx
 ├── components/
-│ ├── assets/
-│ ├── atom/
-│ └── pages/
-│ └── calendar/
+│   ├── assets/
+│   ├── atom/
+│   └── pages/
+│       └── calendar/
 ├── hooks/
-│ └── useGoogleCalendar.tsx
+│   └── useGoogleCalendar.tsx
 └── types/
 
 jest.config.js
 jest.setup.ts
 tailwind.config.js
 tsconfig.json
+```
 
 ## 4. Authentication Layer
 
@@ -76,9 +74,11 @@ Auth uses:
 - Tokens are stored in memory only to avoid persistence/sync issues.
 
 Env variables:
+
+```
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=
 NEXT_PUBLIC_NEXT_URL=
-
+```
 Components:
 
 - Signin.tsx
@@ -107,6 +107,7 @@ Effect lifecycle:
 
 CalendarComponent handles:
 
+```
 - Rendering events
 - dateClick → open Create Event modal
 - eventClick → open Event Detail modal to show Event Details, Edit Event and Delete Event
@@ -115,6 +116,7 @@ CalendarComponent handles:
 
 Includes plugins:
 dayGrid, timeGrid, list, interaction, googleCalendar
+```
 
 ### Modal System
 
@@ -140,6 +142,7 @@ Schema supports:
 
 ## 7. Data Flow
 
+```
 User Login
 ↓ accessToken
 useGoogleCalendar
@@ -159,6 +162,7 @@ Delete → SureDeleteModal
 Events refreshed
 ↓ Toast notifications
 UI updated
+```
 
 ## 8. Testing Strategy
 
@@ -209,6 +213,5 @@ This architecture prioritizes:
 - Type-safe forms and schemas
 - Scalable component design
 - Highly maintainable components
-- Accessibility-first UI behaviors (keyboard, ARIA, focus-lock)
 
 The result is a modern and maintainable Google Calendar client built on industry best practices.

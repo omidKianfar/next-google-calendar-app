@@ -1,5 +1,7 @@
 # Google Calendar App
 
+[Source Code](https://github.com/omidKianfar/next-google-calendar-app)
+
 A modern and full–featured **Google Calendar client** built with **Next.js**, **TypeScript**, and **Google OAuth**, allowing users to view, create, update, and delete calendar events through a clean UI.
 
 This project is primarily designed for **desktop browsers** and integrates the official **Google Calendar API** via secure OAuth 2.0 authentication.

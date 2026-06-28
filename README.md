@@ -2,59 +2,54 @@
 
 [Source Code](https://github.com/omidKianfar/next-google-calendar-app)
 
-A modern and full–featured **Google Calendar client** built with **Next.js**, **TypeScript**, and **Google OAuth**, allowing users to view, create, update, and delete calendar events through a clean UI.
+A full-featured Google Calendar client built with Next.js, TypeScript, and Google OAuth, allowing users to view, create, update, and delete calendar events through a clean UI.
 
-This project is primarily designed for **desktop browsers** and integrates the official **Google Calendar API** via secure OAuth 2.0 authentication.
+This project is primarily designed for desktop browsers and integrates the official Google Calendar API via secure OAuth 2.0 authentication.
 
-##  Features
+For a detailed breakdown of architectural decisions, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
-*  **Google OAuth Login**
-*  **View Google Calendar events**
-*  **Create events**
-*  **Edit events**
-*  **Delete events**
-*  **Real–time event rendering** using FullCalendar
-*  **Modern UI** using Tailwind CSS
-*  **Modular & scalable architecture**
-*  **Unit tests with Jest + React Testing Library**
+## Features
 
-##  Screenshots
+- Google OAuth login
+- View Google Calendar events
+- Create, edit, and delete events
+- Real-time event rendering using FullCalendar
+- Modern UI built with Tailwind CSS
+- Modular, scalable component architecture
+- Unit tests with Jest and React Testing Library
+
+## Screenshots
 
 ### Calendar View
-
 ![Screenshot 1](public/image.png)
 
 ### Events & Modals
-
 ![Screenshot 2](public/image-4.png)
 
-## 🛠 Tech Stack
+## Tech Stack
 
-### **Frontend**
+**Frontend**
+- Next.js
+- TypeScript
+- Tailwind CSS
+- FullCalendar
+- React Hook Form
+- Yup
+- Day.js
+- Lottie React
+- Lucide Icons
+- Notistack
+- Google Fonts
 
-* Next.js
-* TypeScript
-* Tailwind CSS
-* FullCalendar
-* React Hook Form
-* Yup
-* Day.js
-* Lottie React
-* Lucide Icons
-* Notistack
-* Google Fonts
+**Auth & API**
+- Google OAuth 2.0 (Implicit Flow)
+- Google Calendar API
 
-### **Auth & API**
+**Testing**
+- Jest
+- React Testing Library
 
-* Google OAuth 2.0 (implicit flow)
-* Google Calendar API
-
-### **Testing**
-
-* Jest
-* React Testing Library
-
-##  Installation
+## Installation
 
 ### 1. Clone the project
 
@@ -76,7 +71,7 @@ yarn install
 npm run dev
 ```
 
-##  Google OAuth Setup (Required)
+## Google OAuth Setup (Required)
 
 ### 1. Go to Google Cloud Console
 
@@ -84,29 +79,26 @@ npm run dev
 
 ### 2. Create a new project
 
-* Name: **next-google-calendar-app**
+- Name: **next-google-calendar-app**
 
 ### 3. Configure OAuth consent screen
 
-* App type: **External**
-* App name: **next-google-calendar-app**
-* Add your email
-* Publish for testing
+- App type: **External**
+- App name: **next-google-calendar-app**
+- Add your email
+- Publish for testing
 
 ### 4. Create OAuth Client
 
-* Application type: **Web Application**
-* Authorized origins:
-
-```
-http://localhost:3000
-```
-
-* Authorized redirect URIs:
-
-```
-http://localhost:3000
-```
+- Application type: **Web Application**
+- Authorized origins:
+  ```
+  http://localhost:3000
+  ```
+- Authorized redirect URIs:
+  ```
+  http://localhost:3000
+  ```
 
 ### 5. Add environment variables
 
@@ -126,46 +118,42 @@ Google Cloud → APIs & Services → Library → **Google Calendar API** → Ena
 ### 7. Add Calendar API Scopes
 
 Enable:
+- `/auth/calendar`
+- `/auth/calendar.events`
 
-* `/auth/calendar`
-* `/auth/calendar.events`
-
-##  Running Tests
+## Running Tests
 
 ```bash
 npm run test
 ```
 
-##  Project Architecture (Interview-Friendly)
+## Project Structure
 
-```
+```text
 src
 ├── app
-│   └── page.tsx        → Main calendar page
-├── components/          → UI components & atoms
+│   ├── layout.tsx
+│   └── (app)
+│       ├── page.tsx       # Main calendar page
+│       └── layout.tsx
+├── components/
+│   ├── assets/
+│   ├── atom/
+│   └── pages/
+│       └── calendar/
 ├── hooks/
-│   └── use-google-calendar.tsx
-└── types/jest.d.ts               → jest types
-
+│   └── useGoogleCalendar.tsx
+└── types/
 ```
 
-### **Architecture Principles**
+### Architecture Principles
 
-*  Separation of concerns (UI / logic / API)
-*  Reusable components
-*  Lazy-loaded modals for performance
-*  OAuth logic isolated from UI
-*  FullCalendar inside Suspense for smoother loading
+- Separation of concerns (UI / logic / API)
+- Reusable components
+- Lazy-loaded modals for performance
+- OAuth logic isolated from UI
+- FullCalendar rendered inside Suspense for smoother loading
 
-##  Why This Project Is Valuable (For Recruiters)
+## Copyright
 
-* Demonstrates advanced **React / Next.js architecture**
-* Real OAuth 2.0 integration
-* Works with Google Calendar API
-* Includes unit testing setup
-* Clean UI/UX and scalable design
-* Strong example for portfolios and frontend interviews
-
-##  Copyright
-
-2025
+© 2026 Omid Kianfar
